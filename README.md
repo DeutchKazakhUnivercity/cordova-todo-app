@@ -67,4 +67,6 @@ Run application in Android emulator.
     
 **Note**: you have to configure Android emulator first, before using it.
     
-
+## Testing application
+All application tests could be run as individual pages from the browser.
+you could open for example page http://localhost:3000/tests/todo-app.html to run Application tests suite.
