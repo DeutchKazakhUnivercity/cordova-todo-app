@@ -12,6 +12,9 @@
 	"core-selector": "Polymer/core-selector",
 	"core-localstorage": "Polymer/core-localstorage"
   },
+  "devDependencies": {
+    "web-component-tester": "Polymer/web-component-tester#^2.2.3"
+  },
   "ignore": [
     "**/.*",
     "node_modules",

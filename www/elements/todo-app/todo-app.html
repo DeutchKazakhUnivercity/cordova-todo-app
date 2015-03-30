@@ -1,6 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
-<polymer-element name="todo-app" attributes="data type" flex>
+<polymer-element name="todo-app" attributes="storage" flex>
   <template>
         <style>
             /* Portrait layout (default) */
@@ -85,16 +85,41 @@
             // define element prototype here
             statusMessage: 'Connecting to Device',
             loading: true,
+            storage: 'data',
+            items: [],
             /**
             * Set the application element in the ready state
             */
             setReady: function () {
                 this.loading = false;
+                this.loadItems();
+            },
+            /**
+            * Load todo list items from the localStorage
+            */
+            loadItems: function () {
+                console.log("Loading data from localStorage.");
+                var data = localStorage.getItem(this.storage);
+                if (data == null) {
+                    this.items = [];
+                } else {
+                    this.items = JSON.parse(data);
+                }
+            },
+            /**
+            * Save items to the localStorage. 
+            */
+            saveItems: function () {
+                console.log("Saving data to localStorage.");
+                localStorage.setItem(this.storage, JSON.stringify(this.items));
             },
             ready: function () {
                 // If Cordova was initialized earlier then our Polymer application then
                 // tell application that device functions is available.
                 if (appSetup.deviceReady) {
+                    this.onDeviceReady();
+                } else if (window.cordova === undefined) {
+                    console.log("The Cordova environment not found, assuming running in the browser.");
                     this.onDeviceReady();
                 }
                 
