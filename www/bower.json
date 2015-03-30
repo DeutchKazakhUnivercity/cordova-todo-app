@@ -1,0 +1,22 @@
+{
+  "name": "cordova-todo-app",
+  "version": "1.0.0",
+  "authors": [
+    "Andrey Kurdyumov <kant2002@gmail.com>"
+  ],
+  "description": "A sample Apache Cordova application that display todo list.",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+ 	"polymer": "Polymer/polymer#~0.5.5",
+	"core-selector": "Polymer/core-selector",
+	"core-localstorage": "Polymer/core-localstorage"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

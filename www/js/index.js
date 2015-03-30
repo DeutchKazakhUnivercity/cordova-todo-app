@@ -16,7 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var app = {
+var appSetup = {
+    deviceReady: false,
+    
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -32,20 +34,17 @@ var app = {
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
+    onDeviceReady: function() {        
+        var applicationTags = document.getElementsByTagName("todo-app");
+        var application = applicationTags[0];
+        this.deviceReady = true;
+        
+        // Notify Polymer application element
+        // that Cordova is initialized.
+        if (application.onDeviceReady !== undefined) {
+            application.onDeviceReady();
+        }
     }
 };
 
-app.initialize();
+appSetup.initialize();

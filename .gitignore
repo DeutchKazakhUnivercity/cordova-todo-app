@@ -42,5 +42,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Brackets settings
+.brackets.json
+
 platforms/
 plugins/
+www/bower_components/

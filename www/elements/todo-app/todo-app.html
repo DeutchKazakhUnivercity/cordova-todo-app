@@ -1,0 +1,112 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="todo-app" attributes="data type" flex>
+  <template>
+        <style>
+            /* Portrait layout (default) */
+            .app {
+                background:url(../../img/logo.png) no-repeat center top; /* 170px x 200px */
+                position:absolute;             /* position in the center of the screen */
+                left:50%;
+                top:50%;
+                height:50px;                   /* text area height */
+                width:225px;                   /* text area width */
+                text-align:center;
+                padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+                margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                               /* offset horizontal: half of text area width */
+            }
+
+            /* Landscape layout (with min-width) */
+            @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+                .app {
+                    background-position:left center;
+                    padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+                    margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                                  /* offset horizontal: half of image width and text area width */
+                }
+            }
+
+            h1 {
+                font-size:24px;
+                font-weight:normal;
+                margin:0px;
+                overflow:visible;
+                padding:0px;
+                text-align:center;
+            }
+
+            .event {
+                border-radius:4px;
+                -webkit-border-radius:4px;
+                color:#FFFFFF;
+                font-size:12px;
+                margin:0px 30px;
+                padding:2px 0px;
+            }
+
+            .event.listening {
+                background-color:#333333;
+            }
+
+            .event.received {
+                background-color:#4B946A;
+            }
+
+            @keyframes fade {
+                from { opacity: 1.0; }
+                50% { opacity: 0.4; }
+                to { opacity: 1.0; }
+            }
+
+            @-webkit-keyframes fade {
+                from { opacity: 1.0; }
+                50% { opacity: 0.4; }
+                to { opacity: 1.0; }
+            }
+
+            .blink {
+                animation:fade 3000ms infinite;
+                -webkit-animation:fade 3000ms infinite;
+            }
+
+        </style>
+        <div class="app">
+            <h1>Apache Cordova</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening" hidden?="{{ !loading }}">Connecting to Device</p>
+                <p class="event received" hidden?="{{ loading }}">Device is Ready</p>
+            </div>
+        </div>
+  </template>
+  <script>
+    (function () {
+        Polymer({
+            // define element prototype here
+            statusMessage: 'Connecting to Device',
+            loading: true,
+            /**
+            * Set the application element in the ready state
+            */
+            setReady: function () {
+                this.loading = false;
+            },
+            ready: function () {
+                // If Cordova was initialized earlier then our Polymer application then
+                // tell application that device functions is available.
+                if (appSetup.deviceReady) {
+                    this.onDeviceReady();
+                }
+                
+                console.log("Application is finishing initialization and ready.");
+            },
+            onDeviceReady: function () {
+                console.log("The device services is ready.");
+                this.setReady();
+            }
+        });
+    })();
+  </script>
+</polymer-element>
+
+

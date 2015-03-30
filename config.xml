@@ -10,4 +10,5 @@
     <content src="index.html" />
     <access origin="*" />
     <engine name="android" version="3.7.1" />
+    <engine name="browser" version="3.6.0" />
 </widget>
