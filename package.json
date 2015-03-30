@@ -1,0 +1,11 @@
+{
+  "name": "cordova-todo-app",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that display todo list.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrey Kurdyumov <kant2002@gmail.com>",
+  "license": "ISC"
+}
