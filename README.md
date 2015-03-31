@@ -69,4 +69,5 @@ Run application in Android emulator.
     
 ## Testing application
 All application tests could be run as individual pages from the browser.
-you could open for example page http://localhost:3000/tests/todo-app.html to run Application tests suite.
+you could open for example page [http://localhost:3000/tests/todo-app.html](http://localhost:3000/tests/todo-app.html) to run Application tests suite.
+You may need to change port, depending on which port your application will run in the browser.
