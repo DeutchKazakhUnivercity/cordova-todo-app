@@ -7,6 +7,18 @@ In order to develop this application you should have following software installe
 - Node.JS >= 0.10 (http://nodejs.org)
 - Bower (http://bower.io/)
 - Apache Cordova (http://cordova.io) 
+- GitHub for Windows (https://windows.github.com/) (Only Windows users)
+
+Please make sure that you have account on GitHub.
+
+## Clone source code
+
+Clone source code repository following directions from https://help.github.com/articles/adding-repositories-with-github-for-windows/
+Or from Git Shell run 
+
+    git clone https://github.com/DeutchKazakhUnivercity/cordova-todo-app
+    
+That will create sub-folder `cordova-todo-app` with all source code. That folder would be later called the project root.
 
 ## Webdev setup
 
