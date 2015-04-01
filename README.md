@@ -6,6 +6,7 @@ In order to develop this application you should have following software installe
 
 - Node.JS >= 0.10 (http://nodejs.org)
 - Bower (http://bower.io/)
+- Gulp (http://gulpjs.com)
 - Apache Cordova (http://cordova.io) 
 - GitHub for Windows (https://windows.github.com/) (Only Windows users)
 
