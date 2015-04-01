@@ -1,0 +1,86 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="todo-item" attributes="mode description" horizontal layout>
+    <template>
+        <style>
+            :host {
+                height: 30px;
+                line-height: 30px;
+                padding: 5px;
+                background: #2658de;
+            }
+
+            input[type=text] {
+                margin: 2px 5px 2px 0;
+                padding: 2px 4px;
+                border: 1px solid #333;
+                border-radius: 3px;
+            }
+
+            input[readonly] {
+                background: #bbb;
+            }
+
+            button {
+                width: 55px;
+            }
+        </style>
+        <span flex hidden?="{{ mode != 'view' }}">{{description}}</span>
+        <span flex horizontal layout hidden?="{{ mode == 'view' }}">
+            <input flex type="text" value="{{description}}" readonly?="{{ mode == 'delete' }}"></input>
+        </span>
+        <span>
+            <button id="add" on-click="{{add}}" hidden?="{{ mode != 'add' }}">Add</button>
+            <button id="edit" on-click="{{edit}}" hidden?="{{ mode != 'edit' }}">Save</button>
+            <button id="delete" on-click="{{delete}}" hidden?="{{ mode != 'delete' }}">Delete</button>
+            <button id="cancel" on-click="{{cancel}}" hidden?="{{ mode == 'view' }}">Cancel</button>
+        </span>
+    </template>
+    <script>
+        (function () {
+            Polymer({
+                /**
+                * Mode in which todo item is displayed.
+                / There possible 4 modes: 'view', 'edit', 'add', 'delete'
+                */
+                mode: 'view',
+
+                /**
+                * Description of the task which has to be implemented
+                */
+                description: '',
+
+                /**
+                * Notifies that user press the Add button and data ready to
+                * be added by parent collection.
+                */
+                add: function () {
+                    this.fire('data-added', { description: this.description });
+                },
+
+                /**
+                * Notifies that user press the Add button and data ready to
+                * be changed in the parent collection.
+                */
+                edit: function () {
+                    this.fire('data-changed', { description: this.description });
+                },
+
+                /**
+                * Notifies that user press the Add button and data ready to
+                * be removed from the parent collection.
+                */
+                removed: function () {
+                    this.fire('data-deleted', { description: this.description });
+                },
+
+                /**
+                * Notifies that user press the Cancel button and no modifications should be done.
+                */
+                cancel: function () {
+                    this.fire('data-cancelled');
+                },
+            });
+        })();
+    </script>
+</polymer-element>
