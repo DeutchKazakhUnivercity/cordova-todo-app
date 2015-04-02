@@ -1,0 +1,25 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../todo-item/todo-item.html">
+
+<polymer-element name="todo-list" attributes="items" flex>
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+        <template repeat="{{items}}">
+            <todo-item description="{{ description }}"></todo-item>
+        </template>
+    </template>
+    <script>
+        (function () {
+            Polymer({
+                /**
+                * Items which displayed the list.
+                */
+                items: [],
+            });
+        })();
+    </script>
+</polymer-element>

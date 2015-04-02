@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="../css/index.css" />
+        <title>To do list</title>
+
+        <!--
+            The polyfill which add suport for Web components for the browsers who does
+            not support the Web Components natively.
+        -->
+        <script src="../bower_components/webcomponentsjs/webcomponents.js"></script>
+
+        <!--
+            Add library for testing components
+        -->
+        <script src="../bower_components/web-component-tester/browser.js"></script>
+
+        <!-- Import application elements -->
+        <link rel="import" href="../elements/elements.html">
+    </head>
+    <body unresolved fullbleed layout vertical>
+        View mode.
+        <todo-list id="fixture"></todo-list>
+        Add mode.
+        <todo-list id="fixtureAdd" mode="add"></todo-list>
+
+        <script type="text/javascript" src="../js/index.js"></script>
+        <script>
+            var sut = document.getElementById('fixture');
+            sut.items = [ { description: 'Task 1' }]
+
+            suite('app-header', function () {
+                test('dummy', function (done) {
+                    // Data bindings will stamp out new DOM asynchronously
+                    // so wait to check for updates
+                    flush(function () {
+
+                        done();
+                    });
+                });
+                test.skip('dummy');
+            });
+        </script>
+    </body>
+</html>
