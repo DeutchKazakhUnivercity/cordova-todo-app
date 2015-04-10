@@ -80,6 +80,13 @@
                 cancel: function () {
                     this.fire('data-cancelled');
                 },
+
+                /**
+                * Clears all data in the element
+                */
+                clear: function () {
+                    this.description = '';
+                }
             });
         })();
     </script>

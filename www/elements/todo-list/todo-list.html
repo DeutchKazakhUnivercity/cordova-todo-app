@@ -1,13 +1,14 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../todo-item/todo-item.html">
 
-<polymer-element name="todo-list" attributes="items" flex>
+<polymer-element name="todo-list" attributes="items mode" flex>
     <template>
         <style>
             :host {
                 display: block;
             }
         </style>
+        <todo-item id="add" mode="add" hidden?="{{ mode != 'add' }}" on-data-added="{{ onDataAdded }}" on-data-cancelled="{{ onAddCancelled }}"></todo-item>
         <template repeat="{{items}}">
             <todo-item description="{{ description }}"></todo-item>
         </template>
@@ -19,6 +20,27 @@
                 * Items which displayed the list.
                 */
                 items: [],
+
+                /**
+                * Current mode of the element.
+                * Available modes: 'add', 'view'
+                */
+                mode: 'view',
+
+                /**
+                * Handles adding of the element to the list.
+                */
+                onDataAdded: function (event, detail) {
+                    this.items.push({ description: detail.description });
+                    this.$.add.clear();
+                },
+
+                /**
+                * Cancel adding the element
+                */
+                onAddCancelled: function () {
+                    this.mode = 'view';
+                }
             });
         })();
     </script>
