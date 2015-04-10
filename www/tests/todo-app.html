@@ -85,11 +85,11 @@
                 test('Save items', function (done) {
                     // Get SUT
                     var sut = document.getElementById('fixture');
-                    localStorage.setItem('test', JSON.stringify([{id:1}, {id:2}]));
+                    localStorage.setItem('test', JSON.stringify([{description:"Task 1"}, {description:"Task 2"}]));
                     sut.loadItems();
-                    sut.items.push({id:3});
+                    sut.items.push({description:"Task 3"});
                     sut.saveItems();
-                    assert.equal(localStorage.getItem('test'), "[{\"id\":1},{\"id\":2},{\"id\":3}]");
+                    assert.equal(localStorage.getItem('test'), "[{\"description\":\"Task 1\"},{\"description\":\"Task 2\"},{\"description\":\"Task 3\"}]");
                     
                     // Data bindings will stamp out new DOM asynchronously
                     // so wait to check for updates
