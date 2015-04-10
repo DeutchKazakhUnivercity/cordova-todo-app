@@ -24,8 +24,11 @@
             button {
                 width: 55px;
             }
+            .task-name {
+                color: white;
+            }
         </style>
-        <span flex hidden?="{{ mode != 'view' }}">{{description}}</span>
+        <span class="task-name" flex hidden?="{{ mode != 'view' }}">{{description}}</span>
         <span flex horizontal layout hidden?="{{ mode == 'view' }}">
             <input flex type="text" value="{{description}}" readonly?="{{ mode == 'delete' }}"></input>
         </span>
