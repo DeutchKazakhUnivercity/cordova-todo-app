@@ -33,6 +33,7 @@
                 onDataAdded: function (event, detail) {
                     this.items.push({ description: detail.description });
                     this.$.add.clear();
+                    this.mode = 'view';
                 },
 
                 /**
