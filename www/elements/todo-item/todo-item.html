@@ -55,6 +55,10 @@
                 * be added by parent collection.
                 */
                 add: function () {
+                    if (this.description === null || this.description.trim() === '') {
+                        return;
+                    }
+
                     this.fire('data-added', { description: this.description });
                 },
 
