@@ -60,6 +60,11 @@
                 description: '',
 
                 /**
+                * Old value of description before edit mode started.
+                */
+                oldDescription: '',
+
+                /**
                 * Notifies that user press the Add button and data ready to
                 * be added by parent collection.
                 */
@@ -76,14 +81,18 @@
                 * be changed in the parent collection.
                 */
                 edit: function () {
-                    this.fire('data-changed', { description: this.description });
+                    var eventData = {
+                        old: { description: this.oldDescription },
+                        new: { description: this.description }
+                    };
+                    this.fire('data-changed', eventData);
                 },
 
                 /**
                 * Notifies that user press the Add button and data ready to
                 * be removed from the parent collection.
                 */
-                removed: function () {
+                delete: function () {
                     this.fire('data-deleted', { description: this.description });
                 },
 
@@ -105,6 +114,7 @@
                 * Move component to the edit mode
                 */
                 startEditMode: function () {
+                    this.oldDescription = this.description;
                     this.mode = 'edit';
                 },
 

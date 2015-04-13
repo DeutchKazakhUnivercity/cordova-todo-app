@@ -8,9 +8,14 @@
                 display: block;
             }
         </style>
-        <todo-item id="add" mode="add" hidden?="{{ mode != 'add' }}" on-data-added="{{ onDataAdded }}" on-data-cancelled="{{ onAddCancelled }}"></todo-item>
+        <todo-item id="add" mode="add" hidden?="{{ mode != 'add' }}"
+                   on-data-added="{{ onDataAdded }}"
+                   on-data-cancelled="{{ onAddCancelled }}"></todo-item>
         <template repeat="{{items}}">
-            <todo-item description="{{ description }}"></todo-item>
+            <todo-item description="{{ description }}"
+                       on-data-changed="{{ onDataChanged }}"
+                       on-data-deleted="{{ onDataDeleted }}"
+                       on-data-cancelled="{{ onDataCancelled }}"></todo-item>
         </template>
     </template>
     <script>
@@ -41,6 +46,43 @@
                 */
                 onAddCancelled: function () {
                     this.mode = 'view';
+                },
+
+                /**
+                * Handles changing the element to the list.
+                */
+                onDataChanged: function (event, detail, target) {
+                    target.mode = 'view';
+                },
+
+                /**
+                * Handles changing the element to the list.
+                */
+                onDataDeleted: function (event, detail, target) {
+                    var result = [],
+                        itemFound = false,
+                        indexFound = -1;
+                    this.items.forEach(function (item, index) {
+                        if (!itemFound && item.description === detail.description) {
+                            indexFound = index;
+                            itemFound = true;
+                        }
+                    });
+                    if (indexFound != -1) {
+                        this.items.splice(indexFound, 1);
+                    }
+                },
+
+                /**
+                * Cancel adding the element
+                */
+                onDataCancelled: function (event, data, target) {
+                    if (target.mode === 'edit') {
+                        // Restore the previous value
+                        target.description = target.oldDescription;
+                    }
+
+                    target.mode = 'view';
                 }
             });
         })();
