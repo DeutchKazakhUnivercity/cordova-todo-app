@@ -8,9 +8,10 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
- 	"polymer": "Polymer/polymer#~0.5.5",
-	"core-selector": "Polymer/core-selector",
-	"core-localstorage": "Polymer/core-localstorage"
+    "polymer": "Polymer/polymer#~0.5.5",
+    "core-selector": "Polymer/core-selector",
+    "core-localstorage": "Polymer/core-localstorage",
+    "polymer-font-awesome-icons": "philya/font-awesome-polymer-icons#master"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^2.2.3"

@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymer-font-awesome-icons/fa-icons.html">
 
 <polymer-element name="todo-item" attributes="mode description" horizontal layout>
     <template>
@@ -27,12 +28,17 @@
             .task-name {
                 color: white;
             }
+            core-icon {
+                color: white;
+            }
         </style>
         <span class="task-name" flex hidden?="{{ mode != 'view' }}">{{description}}</span>
         <span flex horizontal layout hidden?="{{ mode == 'view' }}">
             <input flex type="text" value="{{description}}" readonly?="{{ mode == 'delete' }}"></input>
         </span>
         <span>
+            <core-icon icon="fa:pencil" hidden?="{{ mode != 'view' }}" on-click="{{ startEditMode }}"></core-icon>
+            <core-icon icon="fa:trash-o" hidden?="{{ mode != 'view' }}" on-click="{{ startDeleteMode }}"></core-icon>
             <button id="add" on-click="{{add}}" hidden?="{{ mode != 'add' }}">Add</button>
             <button id="edit" on-click="{{edit}}" hidden?="{{ mode != 'edit' }}">Save</button>
             <button id="delete" on-click="{{delete}}" hidden?="{{ mode != 'delete' }}">Delete</button>
@@ -93,6 +99,20 @@
                 */
                 clear: function () {
                     this.description = '';
+                },
+
+                /**
+                * Move component to the edit mode
+                */
+                startEditMode: function () {
+                    this.mode = 'edit';
+                },
+
+                /**
+                * Move component to the delete mode
+                */
+                startDeleteMode: function () {
+                    this.mode = 'delete';
                 }
             });
         })();
