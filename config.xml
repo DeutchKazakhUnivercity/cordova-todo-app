@@ -9,6 +9,14 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <engine name="android" version="3.7.1" />
+    <engine name="android" version="4.0.0" />
     <engine name="browser" version="3.6.0" />
+    <feature name="Whitelist">
+        <param name="id" value="cordova-plugin-whitelist" />
+        <param name="url" value="https://github.com/apache/cordova-plugin-whitelist.git#r1.0.0" />
+    </feature>
+    <feature name="Crosswalk WebView Engine">
+        <param name="id" value="cordova-plugin-crosswalk-webview" />
+        <param name="url" value="https://github.com/MobileChromeApps/cordova-plugin-crosswalk-webview.git#1.0.0" />
+    </feature>
 </widget>
